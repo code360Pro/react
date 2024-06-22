@@ -1,5 +1,22 @@
 name: Test Project
-on: [push, workflow_dispatch]
+#on: [push, workflow_dispatch]
+on:
+ pull_request: #action types
+  branches:
+   - main
+  types:
+   - opened 
+   - closed
+ workflow_dispatch:
+ push: # action filteres
+   branches:
+     - main
+     - 'develop-*'
+     - 'feature/**'
+  # paths:
+   #  -  src
+   paths-ignore:
+     - '.github/workflows/*'
 jobs:
    test:
      runs-on: ubuntu-latest
