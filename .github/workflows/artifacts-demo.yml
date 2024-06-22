@@ -29,7 +29,7 @@ jobs:
         run: npm run build
       - name: publish js filename
         id: jspublishname
-        run: find dist/assests/*.js -type f -execdir echo 'jsfilename={}' >> $GITHUB_OUTPUT ';'
+        run: find dist/assets/*.js -type f -execdir echo 'jsfilename={}' >> $GITHUB_OUTPUT ';'
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -48,6 +48,6 @@ jobs:
       - name: Output contents
         run: ls
       - name: output filename 
-        run: echo "${{ needs.build.outputs.jsfilename}}"
+        run: echo "${{ needs.build.outputs.jsfilename }}"
       - name: Deploy
         run: echo "Deploying..."
