@@ -19,7 +19,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     outputs:
-      jsfilename:
+      jsfilename: ${{ steps.jspublishname.outputs.jsfilename }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -28,6 +28,7 @@ jobs:
       - name: Build website
         run: npm run build
       - name: publish js filename
+        id: jspublishname
         run: find dist/assests/*.js -type f -execdir echo 'jsfilename={}' >> $GITHUB_OUTPUT ';'
       - name: upload artifacts
         uses: actions/upload-artifact@v3
@@ -46,5 +47,7 @@ jobs:
          name: dist-files
       - name: Output contents
         run: ls
+      - name: output filename 
+        run: echo "${{ needs.build.outputs.jsfilename}}"
       - name: Deploy
         run: echo "Deploying..."
