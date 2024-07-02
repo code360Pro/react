@@ -2,7 +2,7 @@ name: Deploy website with artifacts
 on:
   push:
     branches:
-      - main
+      - main1
 jobs:
   test:
     runs-on: ubuntu-latest
