@@ -15,9 +15,20 @@ on:
      - 'feature/**'
   # paths:
    #  -  src
-   paths-ignore:
-     - '.github/workflows/*'
+ #  paths-ignore:
+  #   - '.github/workflows/*'
 jobs:
+   matrix-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pet: [cat, dog]
+        color: [pink, brown]
+        include:
+          - color: white
+            pet: dog
+    steps:
+      - run: echo "Hello ${{ matrix.color }} ${{ matrix.pet }}"
    test:
      runs-on: ubuntu-latest
      steps:
@@ -46,7 +57,8 @@ jobs:
         - name: build project
           run:  npm run build
         - name: Deploy
-          run: echo "Deploying.."
+          run: echo "Deploying..this steps runs becuase the condition is true...!"
+          if: github.ref == 'refs/heads/main' # Conditions to check if branch is main
    report:
     needs: [test, deploy]
     if: failure()
