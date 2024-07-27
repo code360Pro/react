@@ -8,6 +8,8 @@ on:
    - opened 
    - closed
  workflow_dispatch:
+ schedule:
+   - cron: '*/5  * * * *' # every five minutes
  push: # action filteres
    branches:
      - main
@@ -57,7 +59,7 @@ jobs:
         - name: build project
           run:  npm run build
         - name: Deploy
-          run: echo "Deploying..this steps runs becuase the condition is true...!"
+          run: echo "Deploying code..this steps runs becuase the condition is true...!"
           if: github.ref == 'refs/heads/main' # Conditions to check if branch is main
    report:
     needs: [test, deploy]
