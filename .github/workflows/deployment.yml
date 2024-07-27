@@ -9,7 +9,7 @@ on:
    - closed
  workflow_dispatch:
  schedule:
-   - cron: '*/5  * * * *' # every five minutes
+   - cron: '*/5 * * * *' # every five minutes
  push: # action filteres
    branches:
      - main
