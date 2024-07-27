@@ -59,7 +59,7 @@ jobs:
         - name: build project
           run:  npm run build
         - name: Print event name
-          run:  echo 'Event name - ${{ env.GITHUB_EVENT_NAME }}'
+          run:  echo 'Event name - ${{ github.event_name }}'
         - name: Deploy 
           run: echo "Deploying code..this steps runs becuase the condition is true...!"
           #if: github.ref == 'refs/heads/main' && && github.event_name != 'schedule' # Conditions to check if branch is main
