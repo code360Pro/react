@@ -1,12 +1,12 @@
 name: Deploy Web site
 #on: [push, workflow_dispatch]
 on:
- pull_request: #action types
-  branches:
-   - main
-  types:
-   - opened 
-   - closed
+ #pull_request: #action types
+ # branches:
+ #  - main
+# types:
+#   - opened 
+#  - closed
  workflow_dispatch:
  schedule:
    - cron: '*/5 * * * *' # every five minutes
@@ -20,17 +20,17 @@ on:
  #  paths-ignore:
   #   - '.github/workflows/*'
 jobs:
-   matrix-job:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        pet: [cat, dog]
-        color: [pink, brown]
-        include:
-          - color: white
-            pet: dog
-    steps:
-      - run: echo "Hello ${{ matrix.color }} ${{ matrix.pet }}"
+  #  matrix-job:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       pet: [cat, dog]
+  #       color: [pink, brown]
+  #       include:
+  #         - color: white
+  #           pet: dog
+  #   steps:
+  #     - run: echo "Hello ${{ matrix.color }} ${{ matrix.pet }}"
    test:
      runs-on: ubuntu-latest
      steps:
