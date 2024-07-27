@@ -1,34 +1,36 @@
 name: Deploy Web site
 #on: [push, workflow_dispatch]
 on:
- pull_request: #action types
-  branches:
-   - main
-  types:
-   - opened 
-   - closed
+ #pull_request: #action types
+ # branches:
+ #  - main
+# types:
+#   - opened 
+#  - closed
  workflow_dispatch:
- push: # action filteres
-   branches:
-     - main
-     - 'develop-*'
-     - 'feature/**'
+ schedule:
+   - cron: '*/5 * * * *' # every five minutes
+ # push: # action filteres
+   # branches:
+    #  - main
+    #  - develop
+    #  - 'feature/**'
   # paths:
    #  -  src
  #  paths-ignore:
   #   - '.github/workflows/*'
 jobs:
-   matrix-job:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        pet: [cat, dog]
-        color: [pink, brown]
-        include:
-          - color: white
-            pet: dog
-    steps:
-      - run: echo "Hello ${{ matrix.color }} ${{ matrix.pet }}"
+  #  matrix-job:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       pet: [cat, dog]
+  #       color: [pink, brown]
+  #       include:
+  #         - color: white
+  #           pet: dog
+  #   steps:
+  #     - run: echo "Hello ${{ matrix.color }} ${{ matrix.pet }}"
    test:
      runs-on: ubuntu-latest
      steps:
@@ -56,9 +58,11 @@ jobs:
           run: npm ci
         - name: build project
           run:  npm run build
-        - name: Deploy
-          run: echo "Deploying..this steps runs becuase the condition is true...!"
-          if: github.ref == 'refs/heads/main' # Conditions to check if branch is main
+        - name: Print event name
+          run:  echo 'Event name - ${{ github.event_name }}'
+        - name: Deploy 
+          run: echo "Deploying code..this steps runs becuase the condition is true...!"
+          #if: github.ref == 'refs/heads/main' && && github.event_name != 'schedule' # Conditions to check if branch is main
    report:
     needs: [test, deploy]
     if: failure()
