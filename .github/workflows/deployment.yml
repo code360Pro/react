@@ -8,8 +8,8 @@ on:
 #   - opened 
 #  - closed
  workflow_dispatch:
- schedule:
-   - cron: '*/5 * * * *' # every five minutes
+#  schedule:
+#    - cron: '*/5 * * * *' # every five minutes
  push: # action filteres
    branches:
      - main
