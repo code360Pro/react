@@ -31,6 +31,8 @@ jobs:
   #           pet: dog
   #   steps:
   #     - run: echo "Hello ${{ matrix.color }} ${{ matrix.pet }}"
+   call-template:
+    uses: code360Pro/.github/workflow-templates/build-and-test.yml@main
    test:
      runs-on: ubuntu-latest
      steps:
