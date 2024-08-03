@@ -19,6 +19,9 @@ on:
    #  -  src
  #  paths-ignore:
   #   - '.github/workflows/*'
+
+extends: ./.github/workflows/build-template.yml
+
 jobs:
   #  matrix-job:
   #   runs-on: ubuntu-latest
