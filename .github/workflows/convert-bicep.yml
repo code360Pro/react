@@ -1,0 +1,16 @@
+name: Convert Bicept to Json
+on: [push]
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps: 
+     - name: Check our repo
+       uses: actions/checkout@v2
+     - name: bicep-build-output
+       uses: Azure/bicep-build-action@v1.0.1
+       with:
+          bicepFilePath: ./new-storage-account.bicep
+          outputFilePath: ./new-storage-account.json 
+      
+      
